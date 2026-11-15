@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="MetroHome24 : trouvez, louez ou vendez un bien immobilier en RDC, sans frais cachés.">
+<meta name="theme-color" content="#5B2A86">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<title>MetroHome24 · Immobilier au Haut-Katanga</title>
+<meta name="description" content="Louez, achetez ou publiez un bien immobilier en RDC : annonces vérifiées, avis réels, prix et frais affichés avant la visite.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="MetroHome24"><meta property="og:title" content="MetroHome24 · Immobilier au Haut-Katanga"><meta property="og:description" content="Annonces vérifiées, avis réels, aucun frais caché.">
+<meta name="theme-color" content="#5B2A86"><link rel="manifest" href="/manifest.webmanifest"><link rel="apple-touch-icon" href="/assets/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header><div class="bar">
+<a class="logo" href="#accueil">Metro<b>Home24</b></a>
+<nav id="nav" aria-label="Navigation principale">
+<a href="#accueil">Accueil</a><a href="#louer">Louer</a><a href="#acheter">Acheter</a><a href="#terrains">Terrains</a><a href="#commerces">Commerces</a><a href="#agences">Agences</a><a href="#services">Services</a><a href="#favoris">Favoris</a><a href="#compte">Mon espace</a><a href="#aide">Aide</a>
+</nav>
+<button class="btn o s" id="inst" hidden>Installer l’application</button>
+<button class="btn o s" id="login">Se connecter</button>
+<a class="btn y s" href="#publier">Publier un bien</a>
+</div></header>
+
+<main>
+<!-- ACCUEIL / RECHERCHE -->
+<section class="view" id="v-accueil">
+<div class="hero" id="hero"><div class="slides" id="slides"></div><div class="hc">
+<h1>Louez ou achetez une maison au Haut-Katanga.</h1>
+<p class="lead">Propriétaires et chercheurs se rencontrent directement, par commune et par quartier : maisons, appartements, parcelles, boutiques. Prix et frais affichés, recherche gratuite.</p></div></div>
+<form class="sb" id="sf">
+<div><label>Transaction<select id="f-tr"><option value="">Toutes</option><option>Location</option><option>Vente</option></select></label></div>
+<div><label>Type de bien<select id="f-ty"><option value="">Tous</option><option>Maison</option><option>Villa</option><option>Appartement</option><option>Studio</option><option>Parcelle</option><option>Terrain</option><option>Bureau</option><option>Boutique</option><option>Entrepôt</option></select></label></div>
+<div><label>Ville / territoire<select id="f-vi"><option value="">Toutes</option></select></label></div>
+<div><label>Commune<select id="f-co"><option value="">Toutes</option></select></label></div>
+<div><label>Quartier<input id="f-qu" list="dl-q" placeholder="Golf, Makomeno…"></label></div>
+<div><label>Prix max (USD)<input id="f-px" type="number" min="0" placeholder="600"></label></div>
+<div><label>Chambres min.<select id="f-ch"><option value="0">Indifférent</option><option>1</option><option>2</option><option>3</option><option>4</option></select></label></div>
+<div><label>Publieur<select id="f-pu"><option value="">Tous</option><option value="Propriétaire">Propriétaire direct</option><option value="Commissionnaire">Commissionnaire</option><option value="Agence">Agence</option></select></label></div>
+<div><label>Tri<select id="f-so"><option value="d">Plus récentes</option><option value="a">Prix croissant</option><option value="z">Prix décroissant</option></select></label></div>
+<div style="display:flex;align-items:end;gap:8px"><label style="display:flex;gap:6px;align-items:center;margin-bottom:10px"><input id="f-ve" type="checkbox" style="width:auto;margin:0">Vérifiés</label></div>
+</form>
+<div class="chips" id="chips"></div>
+<div class="tools"><h2 style="margin:0" id="rt">Annonces</h2>
+<span><button class="btn o s" id="bg">Grille</button> <button class="btn o s" id="bl">Liste</button></span></div>
+<div class="grid" id="results"></div>
+
+<div id="home-extra">
+<h2>Recommandé pour vous</h2><div class="grid" id="reco"></div>
+<h2>Pourquoi MetroHome24</h2>
+<div class="cols">
+<div class="box"><h3>Prix et honoraires visibles</h3><p class="mu">Loyer, caution, avance, honoraires et qui les paie : tout est affiché avant la visite.</p></div>
+<div class="box"><h3>Vérifications expliquées</h3><p class="mu">Identité vérifiée, propriétaire vérifié, mandat vérifié, bien inspecté : chaque badge a un sens précis.</p></div>
+<div class="box"><h3>Signalement simple</h3><p class="mu">Fausse annonce, frais abusifs, bien déjà loué : signalez-le en un geste.</p></div>
+</div>
+<h2>Vous publiez des biens ?</h2>
+<div class="cols">
+<div class="box"><h3>Propriétaire</h3><p class="mu">Publiez sans intermédiaire obligatoire et gardez le contrôle de votre annonce.</p><a class="btn s" href="#publier">Publier</a></div>
+<div class="box"><h3>Commissionnaire</h3><p class="mu">Espace professionnel avec dépôt de mandat et honoraires affichés.</p><a class="btn o s" href="#publier">Publier avec mandat</a></div>
+<div class="box"><h3>Agence / promoteur</h3><p class="mu">Gérez une équipe, des annonces et des projets.</p><a class="btn o s" href="#agences">Voir les agences</a></div>
+</div>
+</div>
+</section>
+
+<!-- PUBLIER -->
+<section class="view" id="v-publier">
+<h2>Publier un bien</h2>
+<p class="lead">Un compte est obligatoire. Votre annonce est vérifiée par notre équipe avant d’être visible, et vos coordonnées sont affichées comme publieur une fois approuvée.</p>
+<form class="box" id="pf">
+<div class="stepper" id="stp"><i></i><i></i><i></i><i></i></div>
+<fieldset class="on"><legend><b>1. Le bien</b></legend>
+<label>Titre de l’annonce<input name="t" required placeholder="Maison 3 chambres clôturée"></label>
+<div class="two"><label>Type<select name="type"><option>Maison</option><option>Villa</option><option>Appartement</option><option>Studio</option><option>Parcelle</option><option>Terrain</option><option>Bureau</option><option>Boutique</option><option>Entrepôt</option></select></label>
+<label>Transaction<select name="tr"><option>Location</option><option>Vente</option></select></label></div>
+<label>Description<textarea name="desc" rows="3"></textarea></label>
+<label>Photos du bien (1 à 5, obligatoire)<input type="file" id="ph" accept="image/*" multiple></label><div class="row" id="pv"></div></fieldset>
+<fieldset><legend><b>2. Localisation et caractéristiques</b></legend>
+<div class="two"><label>Ville / territoire<select name="vi"></select></label><label>Commune<select name="c"></select></label></div>
+<label>Quartier<input name="q" required list="dl-q" placeholder="Golf"></label>
+<div class="two"><label>Chambres<input name="ch" type="number" min="0" value="2"></label><label>Salles de bain<input name="bain" type="number" min="0" value="1"></label></div>
+<label>Surface (m²)<input name="m2" type="number" min="0" value="100"></label>
+<label style="display:flex;gap:6px;align-items:center"><input type="checkbox" style="width:auto;margin:0" checked>Masquer l’adresse exacte au public</label></fieldset>
+<fieldset><legend><b>3. Prix et conditions</b></legend>
+<div class="two"><label>Prix / loyer<input name="prix" type="number" min="0" required></label><label>Devise<select name="dev"><option>USD</option><option>CDF</option></select></label></div>
+<label>Caution et avance<input name="cond" placeholder="Caution 1 mois, avance 3 mois"></label>
+<label>Frais de visite<select name="fv"><option>Aucun</option><option>Oui, annoncés ci-dessous</option></select></label>
+<label>Montant des frais de visite (si applicable)<input name="fvm" placeholder="Ex. 10 USD"></label></fieldset>
+<fieldset><legend><b>4. Qui publie ?</b></legend>
+<label>Votre rôle<select name="pub" id="pubrole"><option value="Propriétaire">Propriétaire direct</option><option value="Commissionnaire">Commissionnaire indépendant</option><option value="Agence">Agence / promoteur</option></select></label>
+<div id="hon" hidden class="fee"><label>Honoraires (fixe ou %)<input name="hon" placeholder="Ex. 1 mois de loyer"></label>
+<label>Qui paie et quand ?<input name="qui" placeholder="Locataire, à la signature"></label>
+<label style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="mand" style="width:auto;margin:0">Je déposerai le mandat du propriétaire</label></div>
+<p class="mu">L’annonce sera soumise à validation par l’équipe MetroHome24 avant d’être visible.</p></fieldset>
+<div class="row"><button class="btn o" id="prev" type="button">Retour</button><button class="btn" id="next" type="button">Continuer</button><button class="btn o" id="draft" type="button">Enregistrer le brouillon</button></div>
+</form>
+</section>
+
+<!-- FAVORIS -->
+<section class="view" id="v-favoris">
+<h2>Mes favoris</h2>
+<div class="grid" id="favs"></div>
+<h2>Comparer</h2>
+<p class="mu">Sélectionnez jusqu’à quatre favoris pour les comparer.</p>
+<div class="sc" id="cmp"></div>
+<h2>Alerte de recherche</h2>
+<div class="box"><p class="mu">Enregistrez les filtres actuels : vous serez prévenu à chaque nouvelle annonce correspondante.</p><button class="btn" id="alert">Créer l’alerte</button><ul id="alerts"></ul></div>
+</section>
+
+<!-- MON ESPACE -->
+<section class="view" id="v-compte">
+<h2>Mon espace</h2>
+<div class="cols" id="stats"></div>
+<h2>Mes annonces</h2>
+<div class="box sc"><table><thead><tr><th>Annonce</th><th>Statut</th><th>Vues</th></tr></thead><tbody id="mine"></tbody></table></div>
+<h2>Demandes de visite</h2>
+<div class="box" id="visits"><p class="mu">Aucune demande pour le moment.</p></div>
+<h2>Messages</h2><div class="box" id="msgs"></div>
+<h2>Paiements (simulation)</h2><div class="box sc" id="txs"></div>
+<h2>Statistiques et marché</h2><div class="box" id="anl"></div>
+<h2>Notifications</h2><div class="box" id="prefs" style="display:grid;gap:8px"></div>
+<h2>Profil et vérification</h2><div class="box" id="profile"></div>
+<h2>Niveaux de vérification</h2>
+<div class="box sc"><table>
+<tr><td><span class="tag r">Non vérifié</span></td><td>Identité ou documents non contrôlés.</td></tr>
+<tr><td><span class="tag">Identité vérifiée</span></td><td>Identité du compte contrôlée.</td></tr>
+<tr><td><span class="tag">Propriétaire vérifié</span></td><td>Lien entre le compte et le bien contrôlé.</td></tr>
+<tr><td><span class="tag">Mandat vérifié</span></td><td>Autorisation de commercialisation contrôlée.</td></tr>
+<tr><td><span class="tag w">Bien inspecté</span></td><td>Visite physique documentée par l’équipe.</td></tr></table>
+<p class="mu">Une identité vérifiée ne garantit pas à elle seule la propriété légale du bien.</p></div>
+</section>
+
+<!-- AGENCES -->
+<section class="view" id="v-agences">
+<h2>Agences et promoteurs</h2>
+<div class="cols">
+<div class="box"><h3>Katanga Habitat</h3><p class="mu">Agence · Lubumbashi · 12 annonces</p><span class="tag">Mandat vérifié</span><span class="tag">Identité vérifiée</span></div>
+<div class="box"><h3>Cuivre Immo</h3><p class="mu">Agence · Likasi · 7 annonces</p><span class="tag">Identité vérifiée</span></div>
+<div class="box"><h3>Résidences du Lualaba</h3><p class="mu">Promoteur · Lubumbashi · 3 projets</p><span class="tag r">Non vérifié</span></div>
+</div>
+</section>
+
+<section class="view" id="v-services"><h2>Services locaux</h2><p class="lead">Installez-vous sans stress : demandez un devis à des prestataires.</p><div class="cols"><div class="box"><h3>Ménage</h3><p class="mu">Nettoyage avant ou après emménagement.</p><button class="btn o s" data-svc="Ménage">Demander un devis</button></div><div class="box"><h3>Déménagement</h3><p class="mu">Transport de vos affaires.</p><button class="btn o s" data-svc="Déménagement">Demander un devis</button></div><div class="box"><h3>Location de meubles</h3><p class="mu">Meublez votre logement à la durée voulue.</p><button class="btn o s" data-svc="Location de meubles">Demander un devis</button></div><div class="box"><h3>Plomberie et électricité</h3><p class="mu">Petites réparations et mises aux normes.</p><button class="btn o s" data-svc="Plomberie et électricité">Demander un devis</button></div></div></section>
+<section class="view" id="v-admin"><h2>Administration</h2><div class="cols" id="astats"></div><h2>Annonces à valider</h2><div id="apend"></div><h2>Décisions récentes</h2><div class="box" id="adone"></div></section>
+<!-- AIDE -->
+<section class="view" id="v-aide">
+<h2>Règles de la plateforme</h2>
+<div class="box"><ul>
+<li>La recherche et la consultation sont gratuites.</li>
+<li>Un propriétaire peut publier sans commissionnaire.</li>
+<li>Aucun frais caché : prix, honoraires et conditions sont affichés avant la visite.</li>
+<li>Aucun frais de visite n’est imposé par la plateforme.</li>
+<li>Un paiement n’est jamais une garantie de propriété.</li>
+<li>Les documents des utilisateurs restent confidentiels.</li></ul></div>
+<h2>Tarifs professionnels</h2>
+<div class="box sc"><table>
+<tr><td>Propriétaire Free / Premium</td><td>Quelques annonces gratuites · plus d’annonces et statistiques</td></tr>
+<tr><td>Commissionnaire Free / Agent Pro</td><td>Profil professionnel · plus d’annonces et outils</td></tr>
+<tr><td>Agence Business · Promoteur</td><td>Équipe, projets, campagnes</td></tr></table></div>
+<h2>Questions fréquentes</h2><details class="box" style="margin-bottom:8px"><summary><b>Comment publier un bien ?</b></summary><p class="mu">Créez un compte propriétaire, cliquez sur Publier un bien et suivez les 4 étapes. Votre annonce est validée avant d’être visible.</p></details><details class="box" style="margin-bottom:8px"><summary><b>Dois-je payer pour chercher un logement ?</b></summary><p class="mu">Non, la recherche et la consultation sont gratuites.</p></details><details class="box" style="margin-bottom:8px"><summary><b>Comment éviter les arnaques ?</b></summary><p class="mu">Ne payez jamais avant d’avoir visité et vu les documents. Signalez toute annonce suspecte avec le bouton Signaler.</p></details><details class="box" style="margin-bottom:8px"><summary><b>Que signifient les badges de vérification ?</b></summary><p class="mu">Identité vérifiée, propriétaire vérifié, mandat vérifié ou bien inspecté : chaque badge correspond à un contrôle précis, sans garantir à lui seul la propriété légale.</p></details><details class="box" style="margin-bottom:8px"><summary><b>Comment obtenir un remboursement ?</b></summary><p class="mu">Depuis Mon espace, section Paiements, cliquez sur Remboursement. La demande est examinée par le support.</p></details><h2>Contacter le support</h2><div class="box"><p class="mu">E-mail : <span id="mail"></span> · Téléphone et WhatsApp : <span id="tel"></span></p><textarea id="sm" rows="3" placeholder="Votre message"></textarea><div class="row"><button class="btn s" id="sup">Envoyer</button></div></div>
+</section>
+</main>
+<footer><a href="/cgu">Conditions d’utilisation</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/anti-fraude">Politique anti-fraude</a> · <a href="/a-propos">À propos</a> · <a href="/comment-ca-marche">Comment ça marche</a> · <a href="/contact">Contact</a> · <a href="#admin">Administration</a><br>MetroHome24 · Lubumbashi, RDC<span id="proto"> · Version de démonstration : les données affichées sont des exemples.</span></footer>
+<noscript><p style="text-align:center;padding:16px">MetroHome24 nécessite JavaScript pour fonctionner.</p></noscript>
+
+<dialog id="dlg"></dialog>
+<dialog id="ldlg"><div class="db"><h3>Créer un compte / se connecter</h3><p class="mu">Un compte est obligatoire pour publier un bien. Vos coordonnées seront visibles par les chercheurs une fois votre annonce approuvée.</p>
+<label>Nom complet<input id="ln"></label><label>Téléphone<input id="lp" type="tel" placeholder="0990000000"></label><label>E-mail<input id="lm" type="email"></label>
+<label>Je suis<select id="lr"><option>Propriétaire</option><option>Commissionnaire</option><option>Agence</option><option>Chercheur</option></select></label>
+<label>Code reçu par SMS<input id="lk" inputmode="numeric" placeholder="Prototype : 123456"></label>
+<div class="row"><button class="btn" id="lgo">Valider</button><button class="btn o" data-soc="Google">Google</button><button class="btn o" data-soc="Facebook">Facebook</button><button class="btn o" id="lx">Annuler</button></div><p class="mu">Prototype : l’envoi réel du code SMS nécessite le back-end.</p></div></dialog>
+<div id="toast" role="status"></div>
+
+<script src="assets/data.js"></script>
+<script src="assets/lieux.js"></script>
+<script src="assets/app.js" defer></script>
+<script src="assets/extra.js" defer></script>
+<script src="assets/more.js" defer></script>
+<script src="assets/api.js" defer></script>
+<script src="assets/pro.js" defer></script>
+<script src="assets/pwa.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "metrohome24",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MetroHome24 : site immobilier + serveur (comptes, annonces, validation, photos, SMS, e-mails)",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server.js",
+    "test": "node smoke-test.js && node test-extra.js",
+    "backup": "node --disable-warning=ExperimentalWarning backup.js",
+    "personnaliser": "node personnaliser.js"
+  }
+}

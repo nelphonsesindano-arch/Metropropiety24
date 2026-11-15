@@ -1,0 +1,21 @@
+# Déploiement Render en quelques clics : New + > Blueprint > choisir votre dépôt GitHub
+services:
+  - type: web
+    name: metrohome24
+    runtime: docker
+    plan: starter            # un disque persistant exige une offre payante
+    healthCheckPath: /api/health
+    autoDeploy: true
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - { key: DATA_DIR, value: /data }
+      - { key: COOKIE_SECURE, value: "1" }
+      - { key: TRUST_PROXY, value: "1" }
+      - { key: SMS_PROVIDER, value: none }       # passez à africastalking ou twilio quand vos clés sont prêtes
+      - { key: ADMIN_PHONE, sync: false }
+      - { key: ADMIN_EMAIL, sync: false }
+      - { key: ADMIN_PASSWORD, sync: false }
+      - { key: PUBLIC_URL, sync: false }
